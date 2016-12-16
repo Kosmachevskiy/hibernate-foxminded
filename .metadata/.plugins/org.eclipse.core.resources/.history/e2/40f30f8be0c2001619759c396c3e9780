@@ -1,0 +1,74 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @pro100fox
+ Watch 34
+  Star 212
+  Fork 152 hibernate/hibernate-ogm
+ Code  Pull requests 3  Projects 0  Pulse  Graphs
+Branch: master Find file Copy pathhibernate-ogm/documentation/examples/gettingstarted/pom.xml
+f43246a  on 8 Nov
+ Jenkins [Jenkins release job] Preparing next development iteration
+3 contributors @DavideD @gunnarmorling @Sanne
+RawBlameHistory     
+58 lines (54 sloc)  2.12 KB
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>hibernate-ogm-documentation-examples</artifactId>
+        <groupId>org.hibernate.ogm</groupId>
+        <version>5.1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>hibernate-ogm-documentation-examples-gettingstarted</artifactId>
+    <name>Hibernate OGM Getting Started</name>
+    <description>Full code for the Getting Started Guide</description>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>hibernate-ogm-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate.ogm</groupId>
+            <artifactId>hibernate-ogm-infinispan</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.narayana.jta</groupId>
+            <artifactId>narayana-jta</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jboss-transaction-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

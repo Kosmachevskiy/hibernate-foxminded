@@ -1,0 +1,26 @@
+--<ScriptOptions statementTerminator=";"/>
+
+
+CREATE TABLE training.department (
+	department_id SERIAL PRIMARY KEY ,
+	dept_name VARCHAR(50) NOT NULL DEFAULT '0'
+	
+);
+
+
+
+CREATE TABLE training.employee (
+	employee_id SERIAL PRIMARY KEY,
+	firstname VARCHAR(50) NULL DEFAULT NULL,
+	lastname VARCHAR(50) NULL DEFAULT NULL,
+	birth_date DATE NULL DEFAULT NULL,
+	cell_phone VARCHAR(15) NULL DEFAULT NULL,
+	department_id BIGINT(20) NULL DEFAULT NULL,	
+	INDEX `FK_DEPT` (`department_id`),
+	CONSTRAINT `FK_DEPT` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`)
+)
+
+CREATE UNIQUE INDEX dbuser_pkey ON dbuser (user_id ASC);
+
+ALTER TABLE dbuser ADD CONSTRAINT dbuser_pkey PRIMARY KEY (user_id);
+

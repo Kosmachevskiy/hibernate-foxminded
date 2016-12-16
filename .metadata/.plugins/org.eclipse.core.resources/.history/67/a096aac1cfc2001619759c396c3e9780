@@ -1,0 +1,5 @@
+package com.foxminded.hibernate.validation;
+
+public class Car {
+
+}

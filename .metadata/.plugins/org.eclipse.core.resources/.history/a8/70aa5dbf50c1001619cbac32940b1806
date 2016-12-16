@@ -1,0 +1,5 @@
+package com.foxminded.hibernate.onetomany.entities;
+
+public class Department {
+
+}
