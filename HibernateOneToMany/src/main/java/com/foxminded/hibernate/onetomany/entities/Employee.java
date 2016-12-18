@@ -1,8 +1,6 @@
 package com.foxminded.hibernate.onetomany.entities;
 
 import java.sql.Date;
-import java.util.List;
-import java.util.StringTokenizer;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 
 @Entity

@@ -20,7 +20,8 @@ public class App {
 
         /*Using HQL*/
         Query query = session.createQuery("FROM Department");
-        List<Department> list = query.list();
+        @SuppressWarnings("unchecked")
+		List<Department> list = query.list();
 
         Query query1 = session.createQuery("FROM Employee E WHERE E.department = :dep");
         query1.setParameter("dep", list.get(0));
@@ -82,6 +83,5 @@ public class App {
         session.createQuery("DELETE FROM Department").executeUpdate();
         transaction.commit();
         session.close();
-
     }
 }
