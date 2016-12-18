@@ -1,6 +1,8 @@
 package com.foxminded.hibernate.onetomany.entities;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -21,11 +27,18 @@ public class Employee {
 	private Long employeeId;
 	
 	@Column(name="firstname")
+	@NotNull
 	private String firstname;
 	
 	@Column(name="lastname")
+	@NotNull
 	private String lastname;
-	
+
+	@Min(500)
+	@Max(10000)
+	@Column(name = "salary")
+	private int salary;
+
 	@Column(name="birth_date")
 	private Date birthDate;
 	
@@ -95,5 +108,24 @@ public class Employee {
 		this.department = department;
 	}
 
-	
+
+	@Override
+	public String toString() {
+		return "Employee{" +
+				"employeeId=" + employeeId +
+				", firstname='" + firstname + '\'' +
+				", lastname='" + lastname + '\'' +
+				", birthDate=" + birthDate +
+				", cellphone='" + cellphone + '\'' +
+				", department=" + department +
+				'}';
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
 }

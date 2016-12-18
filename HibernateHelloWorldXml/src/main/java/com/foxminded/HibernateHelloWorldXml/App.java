@@ -13,7 +13,7 @@ public class App {
 		session.beginTransaction();
 		DBUser user = new DBUser();
 
-		user.setUserId(100);
+		user.setUserId(999);
 		user.setUsername("superman");
 		user.setCreatedBy("system");
 		user.setCreatedDate(new Date());
