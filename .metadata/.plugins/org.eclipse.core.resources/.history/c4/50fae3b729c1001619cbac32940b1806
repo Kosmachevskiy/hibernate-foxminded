@@ -1,5 +1,0 @@
-package com.foxminded.HibernateHelloWorldXml.util;
-
-public class HibernateUtil {
-
-}

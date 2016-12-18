@@ -1,5 +1,0 @@
-package com.foxminded.hibernate.onetomany;
-
-public class Employee {
-
-}
