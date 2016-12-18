@@ -1,45 +1,43 @@
 package com.foxminded.hibernate.onetomany;
 
-import org.hibernate.*;
-
 import com.foxminded.hibernate.onetomany.entities.Department;
 import com.foxminded.hibernate.onetomany.entities.Employee;
-import com.foxminded.hibernate.onetomany.util.HibernateUtil;
-import org.hibernate.criterion.Restrictions;
 
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 public class App {
-    static SessionFactory sf = HibernateUtil.getSessionFactory();
 
-    public static void main(String[] args) {
-        clearTables();
+    private static EntityManagerFactory entityManagerFactory;
+
+    private static void setUp() throws Exception {
+        entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
+    }
+
+    private static void tearDown() throws Exception {
+        entityManagerFactory.close();
+    }
+
+    public static void main(String[] args) throws Exception {
+        setUp();
         fill();
-
-        org.hibernate.classic.Session session = sf.openSession();
-
-        /*Using HQL*/
-        Query query = session.createQuery("FROM Department");
-        @SuppressWarnings("unchecked")
-		List<Department> list = query.list();
-
-        Query query1 = session.createQuery("FROM Employee E WHERE E.department = :dep");
-        query1.setParameter("dep", list.get(0));
-        List<Employee> list1 = query1.list();
-
-        System.out.println(list1.get(0));
-        System.out.println(list1.get(1));
-
-        /*Using criteria*/
-//        Criteria criteria = session.createCriteria(Employee.class);
-//        criteria.add(Restrictions.eq(""))
-
+        tearDown();
     }
 
     private static void fill() {
-        Session session = sf.openSession();
-        Transaction transaction = session.beginTransaction();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
 
+        doStaff(entityManager);
+
+        entityManager.close();
+        transaction.commit();
+    }
+
+    private static void doStaff(EntityManager entityManager) {
         Department department = new Department();
         department.setDepartmentName("Sales");
 
@@ -48,13 +46,13 @@ public class App {
         Employee emp2 = new Employee("Tony", "Almeida", "222");
         department.addEmployee(emp1);
         department.addEmployee(emp2);
-        session.save(department);
+        entityManager.persist(department);
 
         emp1.setDepartment(department);
         emp2.setDepartment(department);
 
-        session.save(emp1);
-        session.save(emp2);
+        entityManager.persist(emp1);
+        entityManager.persist(emp2);
 
         Department department2 = new Department();
         department2.setDepartmentName("Marketing");
@@ -64,24 +62,13 @@ public class App {
 
         department2.addEmployee(emp3);
         department2.addEmployee(emp4);
-        session.save(department2);
+        entityManager.persist(department2);
 
         emp3.setDepartment(department2);
         emp4.setDepartment(department2);
 
-        session.save(emp3);
-        session.save(emp4);
-
-        transaction.commit();
-        session.close();
+        entityManager.persist(emp3);
+        entityManager.persist(emp4);
     }
 
-    public static void clearTables() {
-        org.hibernate.classic.Session session = sf.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.createQuery("DELETE  FROM Employee").executeUpdate();
-        session.createQuery("DELETE FROM Department").executeUpdate();
-        transaction.commit();
-        session.close();
-    }
 }

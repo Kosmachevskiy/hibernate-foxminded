@@ -31,8 +31,8 @@ public class Employee {
 	@NotNull
 	private String lastname;
 
-	@Min(500)
-	@Max(10000)
+//	@Min(500)
+//	@Max(10000)
 	@Column(name = "salary")
 	private int salary;
 
